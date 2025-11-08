@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+
+/* clark user button adjust */
+
+/* .cl-avtarBox{
+  width: 3rem;
+  height: 3rem;
+} */
+
+/* Input Colours */
+input{
+  background-color: #ffffff;
+  accent-color: red;
+  border: 1px solid #ccc;
+  color: #333;
+}
