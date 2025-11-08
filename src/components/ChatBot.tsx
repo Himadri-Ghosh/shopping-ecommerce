@@ -13,7 +13,7 @@ const Chatbot = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const messagesEndRef = useRef<any>(null);
 
-  const HF_API_TOKEN = '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';
+  const HF_API_TOKEN = 'import.meta.env.VITE_HF_API_KEY';
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -220,5 +220,4 @@ const Chatbot = () => {
 export default Chatbot;
 
 
-// GroqCloud : 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
 // hugging face : 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
