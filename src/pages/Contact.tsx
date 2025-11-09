@@ -1,5 +1,5 @@
 import { useUser } from '@clerk/clerk-react';
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 
 
 const Contact = () => {
@@ -33,15 +33,15 @@ const Contact = () => {
           <form className="space-y-6">
             <div>
               <label className="block text-white mb-1">Your Name</label>
-              <input type="text" placeholder="Enter Your Name" className="w-full px-4 py-2 bg-white/20 border border-white/30 text-white rounded-xl placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" value={user?.fullName}/>
+              <input type="text" placeholder="Enter Your Name" className="w-full px-4 py-2 bg-white/20 border border-white/30 text-white rounded-xl placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" value={user?.fullName ?? ""}/>
             </div>
             <div>
               <label className="block text-white mb-1">Email Address</label>
-              <input type="email" placeholder="abcd123@gmail.com" className="w-full px-4 py-2 bg-white/20 border border-white/30 text-white rounded-xl placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" value={user?.primaryEmailAddress.emailAddress}/>
+              <input type="email" placeholder="abcd123@gmail.com" className="w-full px-4 py-2 bg-white/20 border border-white/30 text-white rounded-xl placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500" value={user?.primaryEmailAddress?.emailAddress}/>
             </div>
             <div>
               <label className="block text-white mb-1">Your Message</label>
-              <textarea rows="4" placeholder="Type your message..." className="w-full px-4 py-2 bg-white/20 border border-white/30 text-white rounded-xl placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+              <textarea rows={4} placeholder="Type your message..." className="w-full px-4 py-2 bg-white/20 border border-white/30 text-white rounded-xl placeholder-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
             </div>
             <button type="submit" className="w-full bg-linear-to-r from-red-500 to-purple-500 text-white font-semibold py-2 rounded-xl hover:opacity-90 transition-all duration-300">
               Send Message 🚀

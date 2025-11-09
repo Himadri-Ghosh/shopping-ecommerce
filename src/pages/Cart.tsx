@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useCart } from "../context/CartContext";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { LuNotebookText } from "react-icons/lu";
@@ -7,6 +7,8 @@ import { GiShoppingBag } from "react-icons/gi";
 import { useUser } from "@clerk/clerk-react";
 import { useNavigate } from "react-router-dom";
 import emptyCart from "../assets/empty-cart.png";
+
+
 
 const Cart = ({location, getLocation}:any) => {
   const { cartItem, removeFromCart, updateQuantity} = useCart();
@@ -68,7 +70,7 @@ const Cart = ({location, getLocation}:any) => {
                       type="text"
                       placeholder="Enter your name"
                       className="p-2 rounded-md"
-                      value={user?.fullName}
+                      value={user?.fullName ?? ""}
                     />
                   </div>
                   <div className="flex flex-col space-y-1">
