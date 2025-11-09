@@ -1,5 +1,4 @@
 import { UserButton, useUser } from "@clerk/clerk-react";
-import React from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -15,7 +14,13 @@ const ResponsiveMenu = ({ openNav, setOpenNav }: any) => {
       >
         <div>
           <div className="flex items-center justify-start gap-3">
-            {user ? <UserButton size={50} /> : <FaUserCircle size={50} />}
+            {user ? (
+              <div className="scale-[2] ml-3">
+                <UserButton />
+              </div>
+            ) : (
+              <FaUserCircle size={50} />
+            )}
             <div>
               <h1>Hello, {user?.firstName}</h1>
               <h1 className="text-sm text-slate-500">Premium User</h1>
@@ -25,26 +30,30 @@ const ResponsiveMenu = ({ openNav, setOpenNav }: any) => {
             <ul className="flex flex-col gap-7 text-2xl font-semibold">
               <Link
                 to={"/"}
-                onClick={()=>setOpenNav(false)}
-                className="cursor-pointer">
+                onClick={() => setOpenNav(false)}
+                className="cursor-pointer"
+              >
                 <li>Home</li>
               </Link>
               <Link
                 to={"/products"}
-                onClick={()=>setOpenNav(false)}
-                className="cursor-pointer">
+                onClick={() => setOpenNav(false)}
+                className="cursor-pointer"
+              >
                 <li>Products</li>
               </Link>
               <Link
                 to={"/about"}
-                onClick={()=>setOpenNav(false)}
-                className="cursor-pointer">
+                onClick={() => setOpenNav(false)}
+                className="cursor-pointer"
+              >
                 <li>About</li>
               </Link>
               <Link
                 to={"/Contact"}
-                onClick={()=>setOpenNav(false)}
-                className="cursor-pointer">
+                onClick={() => setOpenNav(false)}
+                className="cursor-pointer"
+              >
                 <li>Contact</li>
               </Link>
             </ul>

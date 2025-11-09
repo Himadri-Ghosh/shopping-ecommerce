@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Loading from "../assets/src_assets_Loading4.webm";
 import { ChevronLeft } from "lucide-react";
@@ -16,7 +16,7 @@ const CategoryProduct = () => {
         `https://api.escuelajs.co/api/v1/categories/${params.id}/products`
       );
       const data = res.data;
-      console.log()
+      console.log();
       setSearchData(data);
     } catch (error) {
       console.log(error);
@@ -25,23 +25,24 @@ const CategoryProduct = () => {
 
   useEffect(() => {
     getFilterData();
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }, []);
 
   return (
     <>
       {searchData.length > 0 ? (
         <div className="max-w-6xl mx-auto mt-10 mb-10 px-4">
-          <button onClick={()=> navigate(`/`)} className="bg-gray-800 mb-5 text-white px-3 py-1 rounded-md cursor-pointer flex gap-1 items-center">
+          <button
+            onClick={() => navigate(`/`)}
+            className="bg-gray-800 mb-5 text-white px-3 py-1 rounded-md cursor-pointer flex gap-1 items-center"
+          >
             <ChevronLeft />
             Back
           </button>
-          {
-            searchData.map((product, index)=>{
-              console.log(product)
-              return <ProductListView key={index} product={product}/>
-            })
-          }
+          {searchData.map((product, index) => {
+            console.log(product);
+            return <ProductListView key={index} product={product} />;
+          })}
         </div>
       ) : (
         <div className="flex items-center justify-center h-[400px]">
