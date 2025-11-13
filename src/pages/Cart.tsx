@@ -5,15 +5,39 @@ import { LuNotebookText } from "react-icons/lu";
 import { MdDeliveryDining } from "react-icons/md";
 import { GiShoppingBag } from "react-icons/gi";
 import { useUser } from "@clerk/clerk-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import emptyCart from "../assets/empty-cart.png";
-
+import OrderConfirmation from "../components/OrderConfirmation";
+import { useState } from "react";
 
 
 const Cart = ({location, getLocation}:any) => {
   const { cartItem, removeFromCart, updateQuantity} = useCart();
   const {user} = useUser();
   const navigate = useNavigate();
+
+  const [showPopUp,setShowPopUp] = useState<boolean>(false);
+  const [deliveryDate, setDeliveryDate] = useState<string>("");
+
+  const randomDeliveryDate = () =>{
+    const today = new Date();
+    const randomDays = Math.floor(Math.random() * 5) + 3;
+    const delivery = new Date(today);
+    delivery.setDate(today.getDate() + randomDays);
+    
+    const day = delivery.getDate();
+    const month = delivery.toLocaleString("en-US", {month: "short"});
+    const year = delivery.getFullYear();
+    const weekday = delivery.toLocaleString("en-US", {weekday:'long'});
+
+    return `${month} ${day}-${year} (${weekday})`;
+  }
+
+  const confirmOrder = () =>{
+    setShowPopUp(true);
+    const date = randomDeliveryDate();
+    setDeliveryDate(date);
+  }
 
 
   const totalPrice =cartItem.reduce((total:number, item:any)=> total + item.price * item.quantity, 0);
@@ -159,7 +183,11 @@ const Cart = ({location, getLocation}:any) => {
                       <button className="bg-white text-black border border-gray-200 px-4 py-1 cursor-pointer rounded-md">Apply</button>
                     </div>
                   </div>
-                  <button className="bg-red-500 text-white px-3 py-2 rounded-md w-full cursor-pointer mt-3">Proceed to Checkout</button>
+                  <label className="gap-2 cursor-pointer">
+                      <input type="radio" value="COD" className="mr-2" checked/>Cash On Delivery
+                  </label>
+                  
+                  <button className="bg-red-500 text-white px-3 py-2 rounded-md w-full cursor-pointer mt-3" onClick={confirmOrder}>Confirm Your Order</button>
                 </div>
               </div>
             </div>
@@ -172,6 +200,7 @@ const Cart = ({location, getLocation}:any) => {
           </div>
         )}
       </div>
+      <OrderConfirmation isOpen={showPopUp} onClose={()=>{setShowPopUp(false)}} deliveryDate={deliveryDate}/>
     </>
   );
 };
